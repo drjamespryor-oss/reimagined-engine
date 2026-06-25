@@ -1,0 +1,70 @@
+// Interface defining the intraday market performance metrics for a stock
+interface StockPerformance {
+  ticker: string;
+  companyName: string;
+  currentPrice: number;
+  netChange: number;
+  percentageChange: number;
+  previousClose: number;
+  marketNotes: string;
+}
+
+// Collection of today's intraday performance data
+const intradayPerformanceBreakdown: Record<string, StockPerformance> = {
+  KBH: {
+    ticker: "KBH",
+    companyName: "KB Home",
+    currentPrice: 62.21,
+    netChange: 0.70,
+    percentageChange: 1.14,
+    previousClose: 61.51,
+    marketNotes: "Maintaining upward momentum and building upon its previous close."
+  },
+  ABSI: {
+    ticker: "ABSI",
+    companyName: "Absci Corp",
+    currentPrice: 10.11,
+    netChange: 0.04,
+    percentageChange: 0.35,
+    previousClose: 10.07,
+    marketNotes: "Trading up slightly following yesterday's explosive 35% move."
+  },
+  WEN: {
+    ticker: "WEN",
+    companyName: "Wendy's Company",
+    currentPrice: 7.52,
+    netChange: -0.34,
+    percentageChange: -4.33,
+    previousClose: 7.86,
+    marketNotes: "Experiencing a cooling-off period after yesterday's massive retail squeeze."
+  },
+  COUR: {
+    ticker: "COUR",
+    companyName: "Coursera, Inc.",
+    currentPrice: 5.80,
+    netChange: -0.29,
+    percentageChange: -4.69,
+    previousClose: 6.08,
+    marketNotes: "Giving back some of yesterday's double-digit gains."
+  },
+  BLDR: {
+    ticker: "BLDR",
+    companyName: "Builders FirstSource, Inc.",
+    currentPrice: 88.42,
+    netChange: 3.01,
+    percentageChange: 3.52,
+    previousClose: 85.41,
+    marketNotes: "Maintaining strong upward momentum during today's session."
+  }
+};
+
+// Example function to log stock performance
+function logPerformance(data: Record<string, StockPerformance>): void {
+  Object.values(data).forEach(stock => {
+    const direction = stock.netChange >= 0 ? "📈" : "📉";
+    const sign = stock.netChange >= 0 ? "+" : "";
+    console.log(`${direction} ${stock.companyName} (${stock.ticker}): Currently at $${stock.currentPrice.toFixed(2)} (${sign}${stock.netChange.toFixed(2)} / ${sign}${stock.percentageChange.toFixed(2)}%)`);
+  });
+}
+
+logPerformance(intradayPerformanceBreakdown);
